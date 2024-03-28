@@ -22,4 +22,4 @@ jobs:
       run: |
           az group create --name $RESOURCE_GROUP_NAME -l $LOCATION
 
-          az deployment group create --resource-group $RESOURCE_GROUP_NAME --template-file .Ch09/Bicep-Deploy-example/main.bicep --parameters .Ch09/Bicep-Deploy-example/main.bicepparam
+          az deployment group create --resource-group $RESOURCE_GROUP_NAME --template-file Ch09/Bicep-Deploy-example/main.bicep --parameters Ch09/Bicep-Deploy-example/main.bicepparam
