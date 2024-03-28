@@ -1,6 +1,6 @@
 name: Deploy Bicep file
 on:
-  woworkflow_dispatch
+  workflow_dispatch
 
 env:
   RESOURCE_GROUP_NAME: rg-book-ch09

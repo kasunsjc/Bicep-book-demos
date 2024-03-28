@@ -12,3 +12,11 @@ az deployment group create --resource-group $RESOURCE_GROUP_NAME --template-file
 
 # Create the Azure Resources with the Bicep file
 az deployment group create --resource-group $RESOURCE_GROUP_NAME --template-file main.bicep --parameters main.bicepparam
+
+
+####################### Create a SPN for Deployment Credentials #######################
+
+# Create a service principal
+# The following example creates a service principal with the name github-action and assigns the Contributor role to the subscription.
+# The command returns the service principal ID and password.
+az ad sp create-for-rbac --name "GitHub-Action" --role contributor --scopes /subscriptions/$(az account show --query id -o tsv)
