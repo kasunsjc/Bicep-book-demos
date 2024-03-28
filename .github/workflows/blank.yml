@@ -1,0 +1,25 @@
+name: Deploy Bicep file
+on:
+  woworkflow_dispatch
+
+env:
+  RESOURCE_GROUP_NAME: rg-book-ch09
+  LOCATION: westus
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@main
+
+    - name: Log into Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Create Resource Group and Deploy Bicep Template
+      run: |
+          az group create --name $RESOURCE_GROUP_NAME -l $LOCATION
+
+          az deployment group create --resource-group $RESOURCE_GROUP_NAME --template-file .Ch09/Bicep-Deploy-example/main.bicep --parameters .Ch09/Bicep-Deploy-example/main.bicepparam
